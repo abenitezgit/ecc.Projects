@@ -66,7 +66,7 @@ public class GrabService {
         
         HTablePool pool = new HTablePool(config,1000);
         
-        HTableInterface hTable = pool.getTable("grabaciones");
+        HTableInterface hTable = pool.getTable("grabdata");
 
 		
 		Map<String, Grabacion> mapGrab = new HashMap<>();
@@ -236,9 +236,9 @@ public class GrabService {
 		
     	try {
 			@SuppressWarnings("deprecation")
-			CloudSolrServer server = new CloudSolrServer(gDatos.getStringSolrServers());
+			CloudSolrServer server = new CloudSolrServer("cloudera4:2181/solr");
 			
-			server.setDefaultCollection("grabaciones_nuevo");
+			server.setDefaultCollection("collgrabacion");
 			//SolrQuery solrQuery = new SolrQuery("*.*");
 			
 			ModifiableSolrParams parameters = buildSolrFilters(tipoConsulta);
@@ -342,7 +342,7 @@ public class GrabService {
     	
         List<String> newList = new ArrayList<>();
         for (String sk : skills) {
-            newList.add(String.format("id:%s+*", sk));
+            newList.add(String.format("id:+%s+*", sk));
         }
         String filter1 = StringUtils.join(newList, " OR ");
         String filter2 = String.format("dnis:%s", dnis);
@@ -357,7 +357,7 @@ public class GrabService {
     	
         List<String> newList = new ArrayList<>();
         for (String sk : skills) {
-            newList.add(String.format("id:%s+*", sk));
+            newList.add(String.format("id:+%s+*", sk));
         }
         String filter1 = StringUtils.join(newList, " OR ");
         String filter2 = String.format("ani:%s", ani);
@@ -372,7 +372,7 @@ public class GrabService {
     	
         List<String> newList = new ArrayList<>();
         for (String sk : skills) {
-            newList.add(String.format("id:%s+*", sk));
+            newList.add(String.format("id:+%s+*", sk));
         }
         String filter1 = StringUtils.join(newList, " OR ");
         String filter2 = String.format("agente:%s", agente);
@@ -387,7 +387,7 @@ public class GrabService {
     	
         List<String> newList = new ArrayList<>();
         for (String sk : skills) {
-            newList.add(String.format("id:%s+*", sk));
+            newList.add(String.format("id:+%s+*", sk));
         }
         String filter1 = StringUtils.join(newList, " OR ");
         String filter2 = String.format("uniqueid:%s", uniqueid);
@@ -403,7 +403,7 @@ public class GrabService {
     	
         List<String> newList = new ArrayList<>();
         for (String sk : skills) {
-            newList.add(String.format("id:%s+*", sk));
+            newList.add(String.format("id:+%s+*", sk));
         }
         String filter1 = StringUtils.join(newList, " OR ");
         String filter2 = String.format("connid:%s", connid);
@@ -420,7 +420,7 @@ public class GrabService {
     	
     	List<String> newList = new ArrayList<>();
     	for (String sk : skills) {
-    		newList.add(String.format("id:[%s+%s+ TO %s+%s+]", 
+    		newList.add(String.format("id:[+%s+%s+ TO +%s+%s+]", 
     				sk, fechaDesde, 
     				sk, fechaHasta));
     	}
@@ -438,7 +438,7 @@ public class GrabService {
     	
     	List<String> newList = new ArrayList<>();
     	for (String sk : skills) {
-    		newList.add(String.format("id:[%s+%s+ TO %s+%s+]", 
+    		newList.add(String.format("id:[+%s+%s+ TO +%s+%s+]", 
     				sk, fechaDesde, 
     				sk, fechaHasta));
     	}
@@ -456,7 +456,7 @@ public class GrabService {
     	
     	List<String> newList = new ArrayList<>();
     	for (String sk : skills) {
-    		newList.add(String.format("id:[%s+%s+ TO %s+%s+]", 
+    		newList.add(String.format("id:[+%s+%s+ TO +%s+%s+]", 
     				sk, fechaDesde, 
     				sk, fechaHasta));
     	}
@@ -474,7 +474,7 @@ public class GrabService {
     	
     	List<String> newList = new ArrayList<>();
     	for (String sk : skills) {
-    		newList.add(String.format("id:[%s+%s+ TO %s+%s+]", 
+    		newList.add(String.format("id:[+%s+%s+ TO +%s+%s+]", 
     				sk, fechaDesde, 
     				sk, fechaHasta));
     	}
@@ -485,7 +485,7 @@ public class GrabService {
 	private String buildSkillQuery(List<String> skills) {
         List<String> newList = new ArrayList<>();
         for (String sk : skills) {
-            newList.add(String.format("id:%s+*", sk));
+            newList.add(String.format("id:+%s+*", sk));
         }
 
         return StringUtils.join(newList, " OR ");

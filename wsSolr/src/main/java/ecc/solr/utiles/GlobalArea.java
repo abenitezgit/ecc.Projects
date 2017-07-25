@@ -84,9 +84,8 @@ public class GlobalArea {
     }
     
     public void fillLstSolrServers() throws Exception {
-        lstSolrServers.add("cloudera1:2181");
-        lstSolrServers.add("cloudera3:2181");
-        lstSolrServers.add("cloudera2:2181/solr");
+        lstSolrServers.add("cloudera4:2181");
+        lstSolrServers.add("cloudera5:2181");
         StringBuilder str = new StringBuilder();
         
         str.append("");
@@ -103,9 +102,9 @@ public class GlobalArea {
     }
     
     public void fillLstHbConfFiles() throws Exception {
-        lstHbConfFiles.add("/usr/local/hbase_conf/cloud/hbase-site.xml");
-        lstHbConfFiles.add("/usr/local/hbase_conf/cloud/core-site.xml");
-        lstHbConfFiles.add("/usr/local/hbase_conf/cloud/hdfs-site.xml");
+        lstHbConfFiles.add("/usr/local/hadoop/conf/hbase-site.xml");
+        lstHbConfFiles.add("/usr/local/hadoop/conf/core-site.xml");
+        lstHbConfFiles.add("/usr/local/hadoop/conf/hdfs-site.xml");
     }
     
     public void fillDataRequest(String dataInput) throws Exception {
